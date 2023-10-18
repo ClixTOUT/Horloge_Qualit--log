@@ -10,7 +10,7 @@ public abstract class CSourceHoraire {
 		iMinutesInitiales = 0;
 		iHeuresInitiales = 0;
 	}
-	public abstract void InitVariables(int heure, int minute,int seconde);
+	public abstract void InitVariables();
 	public void setiSecondesInitiales(int iSecondesInitiales) {
 		this.iSecondesInitiales = iSecondesInitiales;
 	}

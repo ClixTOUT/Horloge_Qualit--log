@@ -47,6 +47,23 @@ public final class CHoraire {
 	public void HORDefinirHeures(int iHORHeures) {
 		this.iHORHeures = iHORHeures;
 	}
+	public void HORupSecondes() {
+		iHORSecondes++;
+		if(iHORSecondes==60)
+		{
+			iHORSecondes=0;
+			iHORMinutes++;
+			if(iHORMinutes==60)
+			{
+				iHORMinutes=0;
+				iHORHeures++;
+				if(iHORHeures==25)
+				{
+					iHORHeures=0;
+				}
+			}
+		}
+	}
 
 
     

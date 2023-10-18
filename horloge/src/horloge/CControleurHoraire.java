@@ -10,23 +10,28 @@ public class CControleurHoraire {
 	
 	
 	public CControleurHoraire() {
-		
+		CHRHoraire = CHoraire.getInstance();
 	}
 	
 	public void CHRActualiseHorloge() {
-		
+		CHRHoraire.HORupSecondes();
 	}
 	
 	public void CHRActualiserAffichage() {
-		
+		String currentTime = CHRHoraire.HORLireHeures()+":"+CHRHoraire.HORLireMinutes()+":"+CHRHoraire.HORLireSecondes();
+		for(CAffichageHoraire index: IAFHCHRAffichage)
+		{
+			
+			index.notify(currentTime);
+		}
 	}
 	
 	public void CHRAjouterAffichage(CAffichageHoraire AFHParam) {
-		
+		IAFHCHRAffichage.add(AFHParam);
 	}
 	
 	public void CHRSupprimerAffichage(int iParam) {
-		
+		IAFHCHRAffichage.remove(iParam);
 	}
 	
 	public void CHRNotifierAffichage() {

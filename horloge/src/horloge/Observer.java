@@ -1,5 +1,5 @@
 package horloge;
 
 public interface Observer {
-void notify(int iSecondes);
+void notify(String s);
 }
