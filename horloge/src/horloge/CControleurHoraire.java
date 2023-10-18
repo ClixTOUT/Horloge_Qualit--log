@@ -3,14 +3,20 @@ package horloge;
 import java.util.ArrayList;
 
 
-public class CControleurHoraire {
-	private CSourceHoraire CHRChemin;
+public class CControleurHoraire implements Runnable{
 	private CHoraire CHRHoraire;
 	private ArrayList<CAffichageHoraire> IAFHCHRAffichage;
 	
 	
 	public CControleurHoraire() {
 		CHRHoraire = CHoraire.getInstance();
+		IAFHCHRAffichage = new ArrayList<CAffichageHoraire>();
+	}
+	public CControleurHoraire(CSourceHoraire horaire) {
+		this();
+		CHRHoraire.HORDefinirSecondes(horaire.getiSecondesInitiales());
+		CHRHoraire.HORDefinirMinutes(horaire.getiMinutesInitiales());
+		CHRHoraire.HORDefinirHeures(horaire.getiHeuresInitiales());
 	}
 	
 	public void CHRActualiseHorloge() {
@@ -33,8 +39,26 @@ public class CControleurHoraire {
 	public void CHRSupprimerAffichage(int iParam) {
 		IAFHCHRAffichage.remove(iParam);
 	}
+	public void CHRAfficherAffichage() {
+		for(CAffichageHoraire index: IAFHCHRAffichage)
+		{
+			
+			System.out.println(index.AFHAfficherTexte());
+		}
+	}
 	
-	public void CHRNotifierAffichage() {
+	@Override
+	public void run() {
+		  while (true) {
+              try {
+                  CHRActualiseHorloge();
+                CHRActualiserAffichage();
+                CHRAfficherAffichage();
+                  Thread.sleep(1000);
+              } catch (InterruptedException e) {
+                  e.printStackTrace();
+              }
+          }
 		
 	}
 }

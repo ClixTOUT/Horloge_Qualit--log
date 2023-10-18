@@ -3,7 +3,7 @@ import java.time.LocalTime;
 
 public class CSourceHoraireCPU extends CSourceHoraire {
 public CSourceHoraireCPU() {
-	
+	InitVariables();
 }
 	@Override
 	public void InitVariables() {
