@@ -7,7 +7,6 @@ public class Main {
 		CControleurHoraire H = new CControleurHoraire(new CSourceHoraireCPU());
 		H.CHRAjouterAffichage(new CAffichageHoraireAnglais());
 		H.CHRAjouterAffichage(new CAffichageHoraireUniversel());
-		new TimeClockFrame();
 		new Thread(H).start();
 	}
 

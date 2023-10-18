@@ -28,7 +28,7 @@ public class viewClock{
 	private JLabel Heure_Univ = new JLabel();
 	
 	
-	public viewClock(String anglais, String Univ) {
+	public viewClock() {
 		
 		panel.setLayout(new GridBagLayout());
 		
@@ -38,7 +38,6 @@ public class viewClock{
 		c.weightx=0.6;
 		c.weighty=0.6;
 		
-		Heure_Anglais.setText(anglais);
 		Heure_Anglais.setFont(new Font("Courier New", 1, 24));
 		c.gridx=1;
 		c.gridy=0;
@@ -48,20 +47,19 @@ public class viewClock{
 		panel.setVisible(true);
 		
 		
-		Heure_Univ.setText(Univ);
 		Heure_Univ.setFont(new Font("Adobe Arial Bold", 1, 47));
 		c.gridx=1;
 		c.gridy=1;
 		c.gridwidth=2;
 		c.gridheight=1;
 		panel.add(Heure_Univ,c);
-		UpdateTimeRunnable updateTimeRunnable = new UpdateTimeRunnable();
-        Thread updateTimeThread = new Thread(updateTimeRunnable);
-        updateTimeThread.start();
 	}
 
 	public JLabel getLabelAnglais() {
 		return Heure_Anglais;
+	}
+	public JPanel getPanel() {
+		return panel;
 	}
 
 	public void setLabelAnglais(JLabel label) {
@@ -71,36 +69,16 @@ public class viewClock{
 	public JLabel getLabelUniv() {
 		return Heure_Univ;
 	}
+	public void setEnglishText(String anglais)
+	{
+		Heure_Anglais.setText(anglais);
+	}
+	public void setUnivText(String univ)
+	{
+		Heure_Univ.setText(univ);
+	}
 
 	public void setLabelTime(JLabel labelTime) {
 		this.Heure_Univ = labelTime;
 	}
-	
-	private class UpdateTimeRunnable implements Runnable {
-        public void run() {
-            while (true) {
-                try {
-                    updateLocalTime();
-                    updateRoundTime();
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        //on recupere l'heure modifié à l'aide de ces deux méthodes
-        private void updateLocalTime() {
-            String currentTime = ActualTimeDisplay.getLocalTime();
-            labelTime.setText(currentTime);
-            
-            String currentDate = getLocalDate(); // Ajout de la méthode pour récupérer la date actuelle
-            labelDate.setText(currentDate);
-        }
-
-        private void updateRoundTime() {
-            String roundTime = DisplayActualRoundTime.getRoundTime();
-            labelRoundTime.setText(" Horaire retenu : "+roundTime);
-        }
-    }
 }

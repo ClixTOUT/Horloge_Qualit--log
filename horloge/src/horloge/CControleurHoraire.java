@@ -6,9 +6,10 @@ import java.util.ArrayList;
 public class CControleurHoraire implements Runnable{
 	private CHoraire CHRHoraire;
 	private ArrayList<CAffichageHoraire> IAFHCHRAffichage;
-	
+private TimeClockFrame TCF;
 	
 	public CControleurHoraire() {
+		TCF = new TimeClockFrame();
 		CHRHoraire = CHoraire.getInstance();
 		IAFHCHRAffichage = new ArrayList<CAffichageHoraire>();
 	}
@@ -40,10 +41,15 @@ public class CControleurHoraire implements Runnable{
 		IAFHCHRAffichage.remove(iParam);
 	}
 	public void CHRAfficherAffichage() {
+		int i=0;
 		for(CAffichageHoraire index: IAFHCHRAffichage)
 		{
-			
-			System.out.println(index.AFHAfficherTexte());
+			if(i==0) {
+				TCF.Panel.setEnglishText(index.AFHAfficherTexte());
+				i++;
+			}else {
+				TCF.Panel.setUnivText(index.AFHAfficherTexte());
+			}
 		}
 	}
 	
