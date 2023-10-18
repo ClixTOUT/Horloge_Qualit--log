@@ -47,7 +47,7 @@ public class viewClock{
 		panel.setVisible(true);
 		
 		
-		Heure_Univ.setFont(new Font("Adobe Arial Bold", 1, 47));
+		Heure_Univ.setFont(new Font("Courier New", 1, 24));
 		c.gridx=1;
 		c.gridy=1;
 		c.gridwidth=2;
@@ -71,11 +71,11 @@ public class viewClock{
 	}
 	public void setEnglishText(String anglais)
 	{
-		Heure_Anglais.setText(anglais);
+		Heure_Anglais.setText("Format anglais : "+anglais);
 	}
 	public void setUnivText(String univ)
 	{
-		Heure_Univ.setText(univ);
+		Heure_Univ.setText("Format universelle : "+univ);
 	}
 
 	public void setLabelTime(JLabel labelTime) {
